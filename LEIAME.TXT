@@ -1,0 +1,73 @@
+Para compilar o programa, entre no MSYS (http://www.mingw.org) e digite
+gcc -shared -o api.dll c_inter.c *.f api.def -lg2c -Wl,--out-implib,api.a
+
+
+E a DLL deve ser criada corretamente. A planilha api-excel.xls possui a 
+interface VB para a DLL.
+
+Uso, na planilha
+tab5a(api, degf, ihydro)
+tab5b(api, degf, ihydro)
+tab5d(api, degf, ihydro)
+
+tab23a(sg, degf, ihydro)
+tab23b(sg, degf, ihydro)
+tab23d(sg, degf, ihydro)
+
+tab53a(rho, degc, ihydro)
+tab53b(rho, degc, ihydro)
+tab53d(rho, degc, ihydro)
+
+
+
+tab6a(api60, degf)
+tab6b(api60, degf)
+tab6c(alf60, degf)
+tab6d(api60, degf)
+
+tab24a(sg60, degf)
+tab24b(sg60, degf)
+tab24c(alf60, degf)
+tab24d(sg60, degf)
+
+
+tab54a(rho15, degc)
+tab54b(rho15, degc)
+tab54c(alf15, degc)
+tab54d(rho15, degc)
+
+
+api - Grau api
+api60 - Grau api a 60 oF
+sg - Standard gravity (rho / 999.012)
+sg60 - Standard gravity a 60oF
+rho - Massa específica kg/m3
+rho15 - Massa específica kg/m3 a 15oC
+degf - Temperatura oF
+degc - Temperatura oC
+
+ihydro = 1 : Não fazer correção por uso de densímetro de vidro
+ihydro = 0 : Fazer correção por uso de densímetro de vidro
+
+
+Observações
+O argumento iflag (dentro das funções em VB) 
+valem:
+0: Tudo correto
+1: Correto mas região extrapolada
+-1: Fora da faixa ou algum erro
+
+
+Nas tabelas pares existem 2 argumentos que são retornados:
+vcfc - Fator de correção do volume para cálculo
+vcfp - Fator de correção do volume para impressão
+
+O vcfc é mais preciso mas caso seja desejado o vcfp, basta mudar nos códigos
+VB tab6a=vcfc po tab6a=vcfp  (mude 6a para a tabela PAR apropriada)
+
+
+Paulo José Saiz Jabardo
+IPT
+25-11-2003
+
+
